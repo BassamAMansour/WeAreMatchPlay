@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">We Are Match Play</string>
+    <string name="not_verified">Not Verified</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="please_enter_username">Please enter the username</string>
+    <string name="please_enter_password">Please enter the password</string>
+    <string name="verified">Verified</string>
+    <string name="check_connection">Login failed, please check connection.</string>
+    <string name="check_credentials">Login failed, please check your credentials.</string>
+</resources>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="match"
+            type="com.bassamworks.wearematchplay.models.ui.Match" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="86dp">
+
+        <View
+            android:id="@+id/vertical_separator"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/horizontal_separator"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_player_1_points"
+            style="@style/PlayerScoreTVStyle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="@{match.playersScores[0]}"
+            app:layout_constraintBottom_toTopOf="@+id/horizontal_separator"
+            app:layout_constraintEnd_toStartOf="@+id/vertical_separator"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="5&amp;4" />
+
+        <TextView
+            android:id="@+id/tv_player_2_points"
+            style="@style/PlayerScoreTVStyle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="@{match.playersScores[1]}"
+            app:layout_constraintBottom_toTopOf="@+id/horizontal_separator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/vertical_separator"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="0" />
+
+        <Button
+            android:id="@+id/btn_player_1"
+            style="@style/BtnBorderless"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="@{match.playersNames[0]}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/vertical_separator"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/horizontal_separator"
+            tools:text="Player 1" />
+
+        <Button
+            android:id="@+id/button6"
+            style="@style/BtnBorderless"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="@{match.playersNames[0]}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/vertical_separator"
+            app:layout_constraintTop_toBottomOf="@+id/horizontal_separator"
+            tools:text="Player 2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
