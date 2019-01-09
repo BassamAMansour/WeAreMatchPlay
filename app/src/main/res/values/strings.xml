@@ -9,4 +9,6 @@
     <string name="verified">Verified</string>
     <string name="check_connection">Login failed, please check connection.</string>
     <string name="check_credentials">Login failed, please check your credentials.</string>
+    <string name="match_play">Match Play</string>
+    <string name="welcome_to_we_are">Welcome to we are</string>
 </resources>

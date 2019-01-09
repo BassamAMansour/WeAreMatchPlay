@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:bind="http://schemas.android.com/apk/res-auto">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -18,13 +17,15 @@
 
         <TextView
             android:id="@+id/tv_course_name"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/margin_single"
             android:layout_marginBottom="@dimen/margin_single"
+            android:maxLines="1"
             android:ellipsize="end"
-            android:singleLine="true"
             android:text="@{match.matchLocation}"
+            android:textAlignment="viewStart"
+            android:textSize="12sp"
             app:layout_constraintBottom_toTopOf="@+id/tv_match_description"
             app:layout_constraintEnd_toStartOf="@+id/match_date"
             app:layout_constraintHorizontal_bias="1.0"
@@ -32,17 +33,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="spread_inside"
-            tools:text="Course Name - Course Location"
-            />
+            tools:text="Course Name - Course Location" />
 
         <TextView
             android:id="@+id/match_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_single"
-            android:ellipsize="end"
-            android:singleLine="true"
+            android:layout_marginBottom="2dp"
+            android:maxLines="1"
             android:text="@{match.matchDate}"
+            android:textAlignment="viewEnd"
+            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="@+id/tv_course_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tv_course_name"
@@ -53,8 +55,8 @@
             android:id="@+id/tv_match_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:text="@{match.matchDescription}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -19,14 +19,13 @@
             style="@style/BtnBorderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/like_btn_not_liked_bg"
-            android:text="@{match.numLikes}"
-            tools:text="0"
+            android:text="@{Integer.toString(match.numLikes)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btn_comments"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="0" />
 
         <Button
             android:id="@+id/btn_comments"
@@ -34,19 +33,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/comment_btn_bg"
-            android:text="@{match.numComments}"
-            tools:text="0"
+            android:text="@{Integer.toString(match.numComments)}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btn_verification_status"
+            app:layout_constraintEnd_toStartOf="@+id/tv_verification_status"
             app:layout_constraintStart_toEndOf="@+id/btn_likes"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="0" />
 
-        <Button
-            android:id="@+id/btn_verification_status"
-            style="@style/BtnBorderless"
+        <TextView
+            android:id="@+id/tv_verification_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/verification_bg"
             android:text="@string/not_verified"
             android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent"

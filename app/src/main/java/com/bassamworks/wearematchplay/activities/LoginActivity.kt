@@ -1,25 +1,30 @@
 package com.bassamworks.wearematchplay.activities
 
+import android.content.Intent
 import android.os.Bundle
-import android.preference.PreferenceManager
 import androidx.appcompat.app.AppCompatActivity
 import com.bassamworks.wearematchplay.R
 import com.bassamworks.wearematchplay.api.LoginService
-import com.bassamworks.wearematchplay.api.UserCredentials
-import com.bassamworks.wearematchplay.api.UserToken
 import com.bassamworks.wearematchplay.constatnts.Constants
+import com.bassamworks.wearematchplay.models.api.login.UserCredentials
+import com.bassamworks.wearematchplay.models.api.login.UserTokenResponse
+import com.bassamworks.wearematchplay.preferenes.UserPreferenceManager
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_login.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        if (isUserLoggedIn()) {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
+
         setContentView(R.layout.activity_login)
 
         btn_login.setOnClickListener { startLoggingInProcedure() }
@@ -38,37 +43,37 @@ class LoginActivity : AppCompatActivity() {
 
     private fun startLoggingInProcedure(username: String, password: String) {
 
-        val loginService = Retrofit.Builder()
-            .baseUrl(Constants.API.API_ROOT)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(LoginService::class.java)
+        val loginService = LoginService()
 
         val tokenCall = loginService.getUserToken(UserCredentials(username, password))
 
-        tokenCall.enqueue(object : Callback<UserToken> {
-            override fun onFailure(call: Call<UserToken>?, t: Throwable?) {
+        tokenCall.enqueue(object : Callback<UserTokenResponse> {
+            override fun onFailure(call: Call<UserTokenResponse>?, t: Throwable?) {
                 showWarning(getString(R.string.check_connection))
             }
 
-            override fun onResponse(call: Call<UserToken>?, response: Response<UserToken>?) {
+            override fun onResponse(call: Call<UserTokenResponse>?, response: Response<UserTokenResponse>) {
 
-                if (response!!.isSuccessful)
+                if (response.isSuccessful)
                     setLoginSuccessful(response.body()!!.api_token)
                 else
-                    showWarning(getString(R.string.check_credentials))
+                    showWarning(response.errorBody()?.string() ?: "Unknown error")
             }
 
         })
     }
 
-    private fun setLoginSuccessful(tokenId: String) {
+    private fun isUserLoggedIn(): Boolean {
 
-        PreferenceManager.getDefaultSharedPreferences(this)
-            .edit()
-            .putString(Constants.Preferences.KEY_CURRENT_USER_TOKEN, tokenId)
-            .apply()
+        val token = UserPreferenceManager.getCurrentUserToken(this)
 
+        return token != Constants.Preferences.DEFAULT_KEY_CURRENT_USER_TOKEN
+    }
+
+    private fun setLoginSuccessful(token: String) {
+        UserPreferenceManager.setCurrentUserToken(this, token)
+
+        startActivity(Intent(this, MainActivity::class.java))
         finish()
     }
 

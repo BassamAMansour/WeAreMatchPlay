@@ -1,16 +1,17 @@
 package com.bassamworks.wearematchplay.models.ui
 
 data class Match(
-    val playersNames: Array<String> = arrayOf(),
-    val playersScores: Array<String> = arrayOf(),
-    val imagesUrls: Array<String> = arrayOf(),
-    val matchLocation: String = "",
-    val matchDate: String = "",
-    val matchDescription: String = "",
-    val numLikes: Int = 0,
-    val isLiked: Boolean = false,
-    val numComments: Int = 0,
-    val isVerified: Boolean = false
+    var id: Int = -1,
+    var playersNames: Array<String> = arrayOf(),
+    var playersScores: Array<String> = arrayOf(),
+    var imagesUrls: Array<String> = arrayOf(),
+    var matchLocation: String = "",
+    var matchDate: String = "",
+    var matchDescription: String = "",
+    var numLikes: Int = 0,
+    var isLiked: Boolean = false,
+    var numComments: Int = 0,
+    var isVerified: Boolean = false
 ) {
     companion object {
         fun getPlayerPosition(playerNumber: Int) = playerNumber - 1
